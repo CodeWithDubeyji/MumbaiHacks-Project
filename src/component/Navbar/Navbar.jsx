@@ -48,6 +48,7 @@ const Navbar = () => {
                 <div className="text-4xl font-bold stroke-text cursor-pointer">
                     <Link to={'/'}>VirtuHub</Link>
                 </div>
+                
                 <div className="flex items-center justify-center gap-4">
                     <button onClick={openLoginModal} className="darkBtn bg-gradient-to-r from-indigo-400 to-purple-500 dark:from-indigo-500">Login</button>
                 </div>
