@@ -4,7 +4,11 @@ import { HeroHighlight } from '../component/ui/HeroHighlight.jsx';
 import { Highlight } from '../component/ui/HeroHighlight.jsx';
 import { CircleArrowDown } from 'lucide-react'
 import { motion } from 'framer-motion'
-
+import { Github } from 'lucide-react';
+import { Facebook } from 'lucide-react';
+import { Twitter } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 import RealTimeImage from '../assets/IMAGE.jpg';
 import ProductivityImage from '../assets/IMAGE1.jpg';
 import TaskManageImage from '../assets/IMAGE2.jpg';
@@ -97,6 +101,92 @@ const Hero = () => {
                     </div>
                 </div>
             </section>
+            <section className="w-full flex flex-col items-center py-8 px-6">
+                {/* Centered Heading Section */}
+                <div className="text-center mb-10">
+                    <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Solution</h2>
+                    <p className="text-gray-600 text-[1.2rem]">
+                        Streamline communications—all in one place
+                    </p>
+                </div>
+                <div className="w-full flex flex-col md:flex-row justify-center items-center gap-6">
+                    {/* Text Section */}
+                    <div className="w-full md:w-[48%] p-8 flex items-center">
+                        <p className="text-[1.1rem] text-gray-700 leading-relaxed">
+                            Our virtual office platform is designed to replicate the in-office experience while offering the flexibility of remote work. By implementing these features, we aim to enhance productivity, foster collaboration, and maintain a sense of community among remote teams.
+                            As we continue to develop and refine our solution, we look forward to helping organizations adapt to the new normal of remote work.
+                        </p>
+                    </div>
+
+                    {/* Image Section */}
+                    <div className="w-full md:w-[48%] p-6 rounded-lg shadow-md flex justify-center items-center">
+                        <div className="w-full h-64 bg-gray-200 rounded-lg flex justify-center items-center">
+                            <span className="text-gray-500">Image Placeholder</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <footer className="bg-gray-800 text-white py-8">
+                <div className="container mx-auto px-4">
+                    <div className="flex flex-col md:flex-row justify-between items-start">
+                        <div className="mb-4 md:mb-0">
+                            <h1 className="text-3xl font-bold">VirtuHub</h1>
+                            <p className="text-sm">Connecting Teams, Anywhere.</p>
+                        </div>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                            <div>
+                                <h2 className="text-xl font-semibold">Links</h2>
+                                <ul>
+                                    <li><a href="#about" className="hover:underline">About Us</a></li>
+                                    <li><a href="#features" className="hover:underline">Features</a></li>
+                                    <li><a href="#blog" className="hover:underline">Blog</a></li>
+                                    <li><a href="#teams" className="hover:underline">Our Team</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2 className="text-xl font-semibold">Resources</h2>
+                                <ul>
+                                    <li><a href="#faq" className="hover:underline">FAQ</a></li>
+                                    <li><a href="#support" className="hover:underline">Support</a></li>
+                                    <li><a href="#terms" className="hover:underline">Terms of Service</a></li>
+                                    <li><a href="#privacy" className="hover:underline">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2 className="text-xl font-semibold">Connect</h2>
+                                <ul>
+                                    <li><a href="#contact" className="hover:underline">Contact Us</a></li>
+                                    <li><a href="#careers" className="hover:underline">Careers</a></li>
+                                    <li><a href="#events" className="hover:underline">Events</a></li>
+                                    <li><a href="#newsletter" className="hover:underline">Newsletter</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex justify-center space-x-4 mt-4">
+                        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <Facebook className="w-6 h-6 hover:text-blue-600" />
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                            <Twitter className="w-6 h-6 hover:text-blue-400" />
+                        </a>
+                        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <Linkedin className="w-6 h-6 hover:text-blue-700" />
+                        </a>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <Github className="w-6 h-6 hover:text-gray-300" />
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <Instagram className="w-6 h-6 hover:text-pink-500" />
+                        </a>
+                    </div>
+                    <div className="mt-4 text-center">
+                        <p className="text-sm">&copy; {new Date().getFullYear()} VirtuHub. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+
         </>
     )
 }
