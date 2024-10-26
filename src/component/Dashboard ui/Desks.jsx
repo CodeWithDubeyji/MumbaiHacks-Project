@@ -23,7 +23,7 @@ const Desks = () => {
         { username: "user_17", post: "Business Analyst", isActive: true, lastActive: "2024-10-25 00:46:33", task: "Gather requirements" },
         { username: "user_18", post: "Scrum Master", isActive: false, lastActive: "2024-10-25 11:46:33", task: "Manage server uptime" },
         { username: "user_19", post: "Game Developer", isActive: false, lastActive: "2024-10-24 22:46:33", task: "Create wireframes" },
-        { username: "user_20", post: "Support Engineer", isActive: false, lastActive: "2024-10-25 05:46:33", task: "Prepare release notes" }
+        { username: "user_20", post: "Support Engineer", isActive: false, lastActive: "2024-10-25 05:46:33", task: null }
       ];
       
     return (
