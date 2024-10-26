@@ -33,7 +33,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="flex flex-col h-[600px] w-full max-w-2xl mx-auto bg-gray-50 rounded-lg shadow-lg">
+    <div className="mt-20 flex flex-col h-[600px] w-full max-w-2xl mx-auto bg-gray-50 rounded-lg shadow-lg">
       {/* Chat header */}
       <div className="px-4 py-3 bg-white border-b rounded-t-lg">
         <h2 className="text-lg font-semibold text-gray-800">{username}</h2>
