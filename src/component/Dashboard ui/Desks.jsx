@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../ui/Card'
 
 const Desks = () => {
-    
+
     const data = [
         { username: "user_1", post: "Front-End Developer", isActive: true, lastActive: "2024-10-24 14:46:33", task: "Complete design updates" },
         { username: "user_2", post: "Back-End Developer", isActive: true, lastActive: "2024-10-24 12:46:33", task: "Review pull requests" },
@@ -24,21 +24,21 @@ const Desks = () => {
         { username: "user_18", post: "Scrum Master", isActive: false, lastActive: "2024-10-25 11:46:33", task: "Manage server uptime" },
         { username: "user_19", post: "Game Developer", isActive: false, lastActive: "2024-10-24 22:46:33", task: "Create wireframes" },
         { username: "user_20", post: "Support Engineer", isActive: false, lastActive: "2024-10-25 05:46:33", task: null }
-      ];
-      
+    ];
+
     return (
-       <div className='text-center text-3xl'>
-        Desk View
-        <div className='flex flex-wrap gap-7 justify-center items-center'>
-            
-            {
-                data.map((elem, i) =>(
-                    
-                    <Card key={i} usernam={elem.username} pos={elem.post} isActiv={elem.isActive} lastActiv={elem.lastActive} tas={elem.task} ></Card>
-                ))
-            }
+        <div className='text-center text-3xl'>
+            Desk View
+            <div className='flex flex-wrap gap-7 justify-center items-center'>
+
+                {
+                    data.map((elem, i) => (
+
+                        <Card key={i} usernam={elem.username} pos={elem.post} isActiv={elem.isActive} lastActiv={elem.lastActive} tas={elem.task} ></Card>
+                    ))
+                }
+            </div>
         </div>
-       </div>
     );
 };
 

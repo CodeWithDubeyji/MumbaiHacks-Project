@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import ProjectCard from '../ui/ProjectCards.jsx';
 
 const projects = [
     {
@@ -8,53 +8,60 @@ const projects = [
         description: 'A web app for tracking personal finance and budgeting.'
     },
     {
+        projectId: 'p002',
+        projectTitle: 'Photographer’s Social Media',
+        description: 'A social media platform for photographers to share and sell their photos.'
+    },
+    {
+        projectId: 'p003',
+        projectTitle: 'Fitness Class Finder',
+        description: 'A mobile app that helps users find nearby fitness classes and gyms.'
+    },
+    {
+        projectId: 'p004',
+        projectTitle: 'Eco-Friendly E-Commerce',
+        description: 'An e-commerce site focused on eco-friendly and sustainable products.'
+    },
+    {
+        projectId: 'p005',
+        projectTitle: 'Virtual Collaboration Tool',
+        description: 'A virtual collaboration tool for remote teams to manage tasks and projects.'
+    },
+    {
+        projectId: 'p006',
+        projectTitle: 'Coding Learning Platform',
+        description: 'An online learning platform for coding tutorials and challenges.'
+    },
+    {
+        projectId: 'p007',
+        projectTitle: 'Secondhand Furniture Marketplace',
+        description: 'A marketplace app for buying and selling secondhand furniture.'
+    },
+    {
+        projectId: 'p008',
+        projectTitle: 'Personal Diary App',
+        description: 'A personal diary app with mood tracking and journaling features.'
+    },
+    {
+        projectId: 'p009',
+        projectTitle: 'Freelance Designer Marketplace',
+        description: 'A platform that matches freelance designers with small businesses needing branding help.'
+    },
+    {
         projectId: 'p010',
-        projectTitle: 'Recipe Finder',
+        projectTitle: 'AI Recipe Suggestion App',
         description: 'An AI-powered recipe app that suggests meals based on ingredients you have at home.'
     }
 ];
 
-// const fetchAIContent = async () => {
-//     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${String(import.meta.env.VITE_REACT_APP_GEMINI_API_KEY)}`;
-
-//     const headers = {
-//         'Content-Type': 'application/json',
-//     };
-
-//     const data = {
-//         contents: [
-//             {
-//                 parts: [
-//                     {
-//                         text: `List only the tech stack for the following project: ${projects[0].description}. No comments or explanations, just a simple json of technologies needed no need to bifercate into frontend, backend or any of those kind .`
-//                     }
-//                 ]
-//             }
-//         ]
-//     };
-
-//     try {
-//         const response = await axios.post(url, data, { headers });
-//         console.log('AI content:', response.data);
-//         return response.data; // Return the data from the response
-//     } catch (error) {
-//         console.error('Error fetching AI content:', error);
-//         return null; // Return null if there is an error
-//     }
-// };
 
 const Workspaces = () => {
     return (
         <div>
-            <h1 className='text-2xl'>Workspaces</h1>
-            <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2'>
-                {projects.map((project) => (
-                    <div key={project.projectId}>
-                        <h2>{project.projectTitle}</h2>
-                        <p>{project.description}</p>
-                    </div>
-                ))}
-            </div>
+            <h2 className="text-2xl font-bold mb-4">Project Workspaces</h2>
+            {projects.map((project) => (
+                <ProjectCard key={project.projectId} projectTitle={project.projectTitle} description={project.description} />
+            ))}
         </div>
     );
 };
