@@ -3,7 +3,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import chaticon from '../../assets/chat_bubble.svg';
-
+import { useNavigate } from 'react-router-dom';
 export default function Card(props) {
     const [username, setUsername] = useState(props.usernam);
     const [post , setPost] = useState(props.pos);
@@ -13,8 +13,8 @@ export default function Card(props) {
     const statusRef = useRef(null);
     const maindiv = useRef(null);
     const [showTask, setShowTask] = useState(false);
-    const [showpost, setShowPost] = useState(false);
-    const [showStatus, setShowStatus] = useState(false);
+    
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (statusRef.current) {
@@ -63,7 +63,7 @@ export default function Card(props) {
                 </div>
                 <div className="flex items-center gap-2 cursor-pointer">
                     <div ref={statusRef} className="rounded-full w-4 h-4 bg-red-500"></div>
-                    <img src={chaticon} alt="Chat" className="w-5 h-5 opacity-70 hover:opacity-100 transition-opacity duration-200" />
+                    <img src={chaticon} onClick={()=>{navigate(`/chat/${username}`)}} alt="Chat" className="w-5 h-5 opacity-70 hover:opacity-100 transition-opacity duration-200" />
                 </div>
             </div>
             {
