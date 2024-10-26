@@ -4,6 +4,8 @@ import Desks from '../component/Dashboard ui/Desks';
 import Workspaces from '../component/Dashboard ui/Workspaces';
 import ChatRoom from '../component/Dashboard ui/ChatRoom';
 import Documentation from '../component/Dashboard ui/MeetDoc';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase/firebase'; // Adjust the import based on your project structure
 
 const Sidebar = ({ isOpen, toggleSidebar, onSelect }) => {
     return (
@@ -31,26 +33,48 @@ const SidebarButton = ({ icon, text, onClick }) => (
     </button>
 );
 
-const TopBar = ({ toggleSidebar }) => (
-    <div className="bg-white shadow-md p-4 flex justify-between items-center">
-        <div className="flex items-center">
-            <button onClick={toggleSidebar} className="mr-4 text-gray-600 hover:text-gray-900">
-                <Menu size={24} />
-            </button>
-            <div className="relative">
-                <input
-                    type="text"
-                    placeholder="Search"
-                    className="pl-10 pr-4 py-2 border rounded-xl w-96 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                />
-                <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
+const TopBar = ({ toggleSidebar, user, setUser }) => {
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            setUser(null);
+        } catch (error) {
+            console.error("Error signing out: ", error);
+        }
+    };
+
+    return (
+        <div className="bg-white shadow-md p-4 flex justify-between items-center">
+            <div className="flex items-center">
+                <button onClick={toggleSidebar} className="mr-4 text-gray-600 hover:text-gray-900">
+                    <Menu size={24} />
+                </button>
+                <div className="relative">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        className="pl-10 pr-4 py-2 border rounded-xl w-96 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    />
+                    <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
+                </div>
+            </div>
+            <div className="flex items-center">
+                {user ? (
+                    <>
+                        <span className="mr-4">{user.email}</span> {/* Display user's email */}
+                        <button onClick={handleLogout} className="bg-red-500 text-white rounded-full p-2">
+                            Logout
+                        </button>
+                    </>
+                ) : (
+                    <button className="bg-gray-200 rounded-full p-2">
+                        <User size={24} />
+                    </button>
+                )}
             </div>
         </div>
-        <button className="bg-gray-200 rounded-full p-2">
-            <User size={24} />
-        </button>
-    </div>
-);
+    );
+};
 
 const Dashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -90,7 +114,7 @@ const Dashboard = () => {
         <div className="flex h-screen bg-gray-100">
             <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} onSelect={handleSelect} />
             <div className="flex-1 flex flex-col">
-                <TopBar toggleSidebar={toggleSidebar} />
+                <TopBar toggleSidebar={toggleSidebar} user={null} setUser={() => {}} /> {/* Pass actual user and setUser here */}
                 <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6 ml-0 transition-all duration-300 ease-in-out">
                     {renderContent()} {/* Render content based on active view */}
                 </main>
