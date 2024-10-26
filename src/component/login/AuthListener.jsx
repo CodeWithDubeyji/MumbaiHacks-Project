@@ -1,26 +1,19 @@
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './firebaseConfig';
 import { useEffect, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase';
 
-function useAuthListener() {
-  const [user, setUser] = useState(null);
+const App = () => {
+    const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        console.log('User is logged in:', currentUser);
-        setUser(currentUser);
-      } else {
-        console.log('No user is logged in');
-        setUser(null);
-      }
-    });
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+        
+        return () => unsubscribe();
+    }, []);
 
-    // Cleanup the listener on unmount
-    return () => unsubscribe();
-  }, []);
+    return user ? <Dashboard user={user} /> : <Login />;
+};
 
-  return user;
-}
-
-export default useAuthListener;
+export default App;
