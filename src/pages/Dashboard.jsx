@@ -6,8 +6,10 @@ import ChatRoom from '../component/Dashboard ui/ChatRoom';
 import Documentation from '../component/Dashboard ui/MeetDoc';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase/firebase'; // Adjust the import based on your project structure
+import UserProfile from '../database/UserProfile';
 
 const Sidebar = ({ isOpen, toggleSidebar, onSelect }) => {
+
     return (
         <div className={`fixed inset-y-0 left-0 z-30 w-64 bg-gray-800 text-white transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
             <div className="flex justify-between items-center p-4 border-b border-gray-700">
@@ -34,6 +36,7 @@ const SidebarButton = ({ icon, text, onClick }) => (
 );
 
 const TopBar = ({ toggleSidebar, user, setUser }) => {
+    const [isUserHovered, setIsUserHovered] = useState(false);
     const handleLogout = async () => {
         try {
             await signOut(auth);
@@ -42,7 +45,9 @@ const TopBar = ({ toggleSidebar, user, setUser }) => {
             console.error("Error signing out: ", error);
         }
     };
-
+    const handlehover = () => {
+        setIsUserHovered(!isUserHovered);
+    }
     return (
         <div className="bg-white shadow-md p-4 flex justify-between items-center">
             <div className="flex items-center">
@@ -62,23 +67,33 @@ const TopBar = ({ toggleSidebar, user, setUser }) => {
                 {user ? (
                     <>
                         <span className="mr-4">{user.email}</span> {/* Display user's email */}
-                        <button onClick={handleLogout} className="bg-red-500 text-white rounded-full p-2">
+                        <button onClick={handleLogout} className="bg-red-500 text-black rounded-full p-2">
                             Logout
                         </button>
                     </>
                 ) : (
-                    <button className="bg-gray-200 rounded-full p-2">
-                        <User size={24} />
-                    </button>
+                    <div className='relative'>
+                        <button className="bg-gray-200 rounded-full p-2" onMouseEnter={() => handlehover()} onMouseLeave={() => handlehover()}>
+                            <User size={24} />
+                        </button>
+                        {isUserHovered && ( // Display user menu on hover over user icon button
+                            <div className='absolute right-8 top-12 w-72 h-48 flex flex-col gap-6 bg-white shadow-md p-2 rounded-md'>
+                                <UserProfile />
+                                <div>
+                                    Logout
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 )}
             </div>
         </div>
     );
 };
 
-const Dashboard = () => {
+const Dashboard = ({ user }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [activeView, setActiveView] = useState('home'); // Default view
+    const [activeView, setActiveView] = useState('home');
 
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
     const handleSelect = (view) => {
@@ -114,9 +129,9 @@ const Dashboard = () => {
         <div className="flex h-screen bg-gray-100">
             <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} onSelect={handleSelect} />
             <div className="flex-1 flex flex-col">
-                <TopBar toggleSidebar={toggleSidebar} user={null} setUser={() => {}} /> {/* Pass actual user and setUser here */}
+                <TopBar toggleSidebar={toggleSidebar} user={null} setUser={() => { user }} />
                 <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6 ml-0 transition-all duration-300 ease-in-out">
-                    {renderContent()} {/* Render content based on active view */}
+                    {renderContent()}
                 </main>
             </div>
             {sidebarOpen && (

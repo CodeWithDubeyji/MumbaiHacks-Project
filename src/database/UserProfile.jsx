@@ -12,7 +12,7 @@ const UserProfile = () => {
   
       if (user) {
         const userEmail = user.email;
-        const profileRef = ref(database, 'profiles');
+        const profileRef = ref(database, 'profiles/profile');
         
         const userQuery = query(profileRef, orderByChild('email'), equalTo(userEmail));
   
